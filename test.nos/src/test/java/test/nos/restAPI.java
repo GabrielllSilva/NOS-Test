@@ -12,9 +12,7 @@ public class restAPI {
 	@BeforeClass
 	public static void setup() {
 
-     RestAssured.baseURI = "https://gorest.co.in";
-     //String token = "50d0ef874afc97ef12ba5fefc02514505b90544de3248e6c93de95b6ca58b32e";
-     
+     RestAssured.baseURI = "https://gorest.co.in";     
 	}
 	
 	@Test
@@ -33,10 +31,8 @@ public class restAPI {
 		
 		String token = "50d0ef874afc97ef12ba5fefc02514505b90544de3248e6c93de95b6ca58b32e";
 
-	RestAssured.given()
-	 .header("authorization", "bearer " + token)
-	 .header("Content-type", "application/json; charset=UTF-8")
-     .body("{\"name\": \"Teste NOS\", \"gender\": \"male\", \"email\": \"teste.nos@nos.com\", \"staus\": \"active\"}")
+	RestAssured.given().header("Authorization", "Bearer " + token)
+     .body("{\"name\": \"Teste Nos\", \"gender\": \"male\", \"email\": \"testenos@nos.com\", \"status\": \"active\"}")
           
      .contentType(ContentType.JSON)
         .when()
@@ -44,9 +40,9 @@ public class restAPI {
         .then()
      .statusCode(201)
 
-     .body("name", Matchers.is("Teste NOS"))
+     .body("name", Matchers.is("Teste Nos"))
      .body("gender", Matchers.is("male"))
-     .body("email", Matchers.is("teste.nos@nos.com.pt"))     
+     .body("email", Matchers.is("testenos@nos.com"))     
      .body("status", Matchers.is("active"));
 	}
 	
@@ -55,17 +51,17 @@ public class restAPI {
 		
 		String token = "50d0ef874afc97ef12ba5fefc02514505b90544de3248e6c93de95b6ca58b32e";
 
-	RestAssured.given().header("authorization", "bearer " + token)
-     .body("{\"name\": \"Deepan Kaur\",\"email\": \"deepan_kaur@oconnell.biz\",\"staus\": \"active\"}")
+	RestAssured.given().header("Authorization", "Bearer " + token)
+     .body("{\"name\": \"Trilochana Marar\",\"email\": \"marar_trilochana@effertz-jast.biz\",\"status\": \"active\"}")
           		
      .contentType(ContentType.JSON)
         .when()
-     .put("/public/v2/users/308793")
+     .put("/public/v2/users/309559")
         .then()
      .statusCode(200)
 
-     .body("name", Matchers.is("Deepan Kaur"))
-     .body("email", Matchers.is("deepan_kaur@oconnell.biz"))
+     .body("name", Matchers.is("Trilochana Marar"))
+     .body("email", Matchers.is("marar_trilochana@effertz-jast.biz"))
      .body("status", Matchers.is("active"));
 	}
 	
@@ -74,7 +70,7 @@ public class restAPI {
 		
 		String token = "50d0ef874afc97ef12ba5fefc02514505b90544de3248e6c93de95b6ca58b32e";
 
-	RestAssured.given().header("authorization", "bearer " + token)
+	RestAssured.given().header("Authorization", "Bearer " + token)
         		
      .contentType(ContentType.JSON)
         .when()
